@@ -1,0 +1,7 @@
+{
+    "name": "maxim/promotion.yugoslavia.best",
+    "description": "advertisements",
+    "require": {
+        "ezyang/htmlpurifier": "^4.17"
+    }
+}
