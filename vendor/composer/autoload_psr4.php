@@ -6,4 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Katzgrau\\KLogger\\' => array($vendorDir . '/katzgrau/klogger/src'),
+    'Atakde\\DiscordWebhook\\' => array($vendorDir . '/atakde/discord-webhook-php/src'),
 );

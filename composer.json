@@ -2,6 +2,9 @@
     "name": "maxim/promotion.yugoslavia.best",
     "description": "advertisements",
     "require": {
-        "ezyang/htmlpurifier": "^4.17"
+        "ezyang/htmlpurifier": "^4.17",
+        "symfony/var-dumper": "^6.4",
+        "katzgrau/klogger": "^1.2",
+        "atakde/discord-webhook-php": "^2.0"
     }
 }
