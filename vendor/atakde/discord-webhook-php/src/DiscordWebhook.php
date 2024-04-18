@@ -68,7 +68,8 @@ class DiscordWebhook
                     'Content-Length: ' . strlen($this->message->toJson())
                 ));
             }
-
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
             $response = curl_exec($ch);
             $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);

@@ -10,5 +10,6 @@ return array(
     'Symfony\\Component\\VarDumper\\' => array($vendorDir . '/symfony/var-dumper'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Katzgrau\\KLogger\\' => array($vendorDir . '/katzgrau/klogger/src'),
+    'Bayfront\\MimeTypes\\' => array($vendorDir . '/bayfrontmedia/php-mime-types/src'),
     'Atakde\\DiscordWebhook\\' => array($vendorDir . '/atakde/discord-webhook-php/src'),
 );

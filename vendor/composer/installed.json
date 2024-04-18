@@ -53,6 +53,58 @@
             "install-path": "../atakde/discord-webhook-php"
         },
         {
+            "name": "bayfrontmedia/php-mime-types",
+            "version": "v2.0.0",
+            "version_normalized": "2.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bayfrontmedia/php-mime-types.git",
+                "reference": "b752ddcb3d24ad63e2c28bcc69e751b4cf184a5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bayfrontmedia/php-mime-types/zipball/b752ddcb3d24ad63e2c28bcc69e751b4cf184a5b",
+                "reference": "b752ddcb3d24ad63e2c28bcc69e751b4cf184a5b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "time": "2023-01-26T17:13:03+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Bayfront\\MimeTypes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Robinson",
+                    "email": "john@bayfrontmedia.com",
+                    "homepage": "https://www.bayfrontmedia.com"
+                }
+            ],
+            "description": "Simple class used to detect the appropriate MIME type of a file based on it's extension.",
+            "homepage": "https://github.com/bayfrontmedia/php-mime-types",
+            "keywords": [
+                "extension",
+                "file",
+                "mime",
+                "php",
+                "type"
+            ],
+            "support": {
+                "issues": "https://github.com/bayfrontmedia/php-mime-types/issues",
+                "source": "https://github.com/bayfrontmedia/php-mime-types/tree/v2.0.0"
+            },
+            "install-path": "../bayfrontmedia/php-mime-types"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.17.0",
             "version_normalized": "4.17.0.0",

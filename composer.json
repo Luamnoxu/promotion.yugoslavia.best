@@ -5,6 +5,7 @@
         "ezyang/htmlpurifier": "^4.17",
         "symfony/var-dumper": "^6.4",
         "katzgrau/klogger": "^1.2",
-        "atakde/discord-webhook-php": "^2.0"
+        "atakde/discord-webhook-php": "^2.0",
+        "bayfrontmedia/php-mime-types": "^2.0"
     }
 }

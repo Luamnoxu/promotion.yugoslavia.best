@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce5c4c1912c6d3cc98fb74abcae061c7",
+    "content-hash": "81c622f54bb8512321808fc973184b2f",
     "packages": [
         {
             "name": "atakde/discord-webhook-php",
@@ -54,6 +54,55 @@
                 "source": "https://github.com/atakde/discord-webhook-php/tree/2.0.0"
             },
             "time": "2023-08-12T12:04:20+00:00"
+        },
+        {
+            "name": "bayfrontmedia/php-mime-types",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bayfrontmedia/php-mime-types.git",
+                "reference": "b752ddcb3d24ad63e2c28bcc69e751b4cf184a5b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bayfrontmedia/php-mime-types/zipball/b752ddcb3d24ad63e2c28bcc69e751b4cf184a5b",
+                "reference": "b752ddcb3d24ad63e2c28bcc69e751b4cf184a5b",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Bayfront\\MimeTypes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Robinson",
+                    "email": "john@bayfrontmedia.com",
+                    "homepage": "https://www.bayfrontmedia.com"
+                }
+            ],
+            "description": "Simple class used to detect the appropriate MIME type of a file based on it's extension.",
+            "homepage": "https://github.com/bayfrontmedia/php-mime-types",
+            "keywords": [
+                "extension",
+                "file",
+                "mime",
+                "php",
+                "type"
+            ],
+            "support": {
+                "issues": "https://github.com/bayfrontmedia/php-mime-types/issues",
+                "source": "https://github.com/bayfrontmedia/php-mime-types/tree/v2.0.0"
+            },
+            "time": "2023-01-26T17:13:03+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",

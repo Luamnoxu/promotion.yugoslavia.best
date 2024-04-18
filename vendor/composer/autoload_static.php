@@ -27,6 +27,10 @@ class ComposerStaticInit20b8c99c52e788be616897bd430084d9
         array (
             'Katzgrau\\KLogger\\' => 17,
         ),
+        'B' => 
+        array (
+            'Bayfront\\MimeTypes\\' => 19,
+        ),
         'A' => 
         array (
             'Atakde\\DiscordWebhook\\' => 22,
@@ -49,6 +53,10 @@ class ComposerStaticInit20b8c99c52e788be616897bd430084d9
         'Katzgrau\\KLogger\\' => 
         array (
             0 => __DIR__ . '/..' . '/katzgrau/klogger/src',
+        ),
+        'Bayfront\\MimeTypes\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/bayfrontmedia/php-mime-types/src',
         ),
         'Atakde\\DiscordWebhook\\' => 
         array (
