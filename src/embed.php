@@ -31,9 +31,13 @@ final class Embed
     public array $mimeTypes;
     public string $folder;
 
-    public function __construct()
+    public function __construct($pending = false)
     {
-        $this->storageDir = __DIR__ . '/../storage/';
+        if($pending){
+            $this->storageDir = __DIR__ . '/../pending/';
+        }else{
+            $this->storageDir = __DIR__ . '/../storage/';
+        }
         $this->logger = LoggerHelper::getLogger();
         $this->mimeTypes = fgetcsv(fopen(__DIR__ . '/allowed_mime.csv', 'r'));
     }

@@ -27,8 +27,9 @@ foreach ($_FILES['ad_files']['name'] as $value) {
     }
 }
 if (!$default_present) {
-    http_response_code(400);
-    return "No default file present.";
+    //http_response_code(400);
+    echo "No default file present.";
+    return;
 }
 
 $uniqueName = hash('sha256', $name . time());
