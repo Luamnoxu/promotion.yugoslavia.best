@@ -47,6 +47,7 @@ require __DIR__.'/../src/auth.php';
         $obj = (object)preg_split("/\r\n|\n|\r/", $info);
         $obj->author = $obj->{"0"}; unset($obj->{"0"});
         $obj->link = $obj->{"1"}; unset($obj->{"1"});
+        $obj->stretch = $obj->{"2"}; unset($obj->{"2"});
         $obj->name = $item;
         $array[] = $obj;
     }

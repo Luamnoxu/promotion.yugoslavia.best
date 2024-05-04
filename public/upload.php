@@ -3,15 +3,20 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/embed.php';
 
 $embed = new Embed;
-use Bayfront\MimeTypes\MimeType;
 
-if (count($_POST) !== 2 || empty($_FILES['ad_files'])) {
+use Bayfront\MimeTypes\MimeType;
+if (count($_POST) < 2 || empty($_FILES['ad_files'])) {
     http_response_code(422);
     return "You're missing something.";
 }
 
 $name = preg_replace("/[^a-zA-Z0-9_\-]/", "", $_POST['ad_name']);  // Sanitize name
 $link = filter_var($_POST['ad_link'], FILTER_SANITIZE_URL);  // Sanitize the URL
+if(!isset($_POST['no_stretch'])){
+    $stretch = 'stretch';
+}else{
+    $stretch = 'nostretch';
+}
 
 if (!preg_match('/^\w+$/', $name)) {
     $embed->logger->info($name . ' tried to do something silly');
@@ -26,10 +31,21 @@ foreach ($_FILES['ad_files']['name'] as $value) {
         break;
     }
 }
+
 if (!$default_present) {
-    //http_response_code(400);
-    echo "No default file present.";
-    return;
+    if (count($_FILES['ad_files']['name']) == 1) {
+        $mime = MimeType::fromFile($_FILES['ad_files']['name'][0]);
+        if(str_starts_with($mime,'image/')){
+            $_FILES['ad_files']['name'][0] = 'default.'.explode('image/',$mime)[1];
+        }else{
+            echo "No default file or image present.";
+            return;
+        }
+    } else {
+        //http_response_code(400);
+        echo "No default file present.";
+        return;
+    }
 }
 
 $uniqueName = hash('sha256', $name . time());
@@ -63,7 +79,6 @@ foreach ($_FILES['ad_files']['tmp_name'] as $key => $tmp_name) {
     }
 }
 
-file_put_contents($path . '/.info', $name . PHP_EOL . $link);
-$embed->logger->info('New Ad Submission named: '.$name);
+file_put_contents($path . '/.info', $name . PHP_EOL . $link . PHP_EOL . $stretch);
+$embed->logger->info('New Ad Submission named: ' . $name);
 echo "Upload successful! An Admin will take a look at your Ad and add it soon.";
-?>

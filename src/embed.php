@@ -56,7 +56,7 @@ final class Embed
         }
 
         $filename = array_shift($files);
-        return ['mime' => $this->fetchMimeType($target, $filename), 'contents' => $this->fetchFileContent($target, $filename)];
+        return ['info' => $this->getInfo($target),'mime' => $this->fetchMimeType($target, $filename), 'contents' => $this->fetchFileContent($target, $filename)];
     }
 
     private function getFilesStartingWith(string $target, string $filename): array
@@ -65,6 +65,10 @@ final class Embed
         return array_filter($contents, function ($item) use ($filename) {
             return str_starts_with($item, $filename);
         });
+    }
+
+    private function getLink($target){
+        return file_get_contents($this->storageDir.$target.'/.info');
     }
 
     private function fetchFileContent(string $target, string $filename): string
@@ -77,6 +81,15 @@ final class Embed
     {
         $filePath = $this->storageDir . $target . '/' . $filename;
         return MimeType::fromFile($filePath);
+    }
+
+    private function getInfo($target){
+        $info = file_get_contents($this->storageDir.$target.'/.info');
+        $obj = (object)explode(PHP_EOL,$info);
+        $obj->author = $obj->{"0"}; unset($obj->{"0"});
+        $obj->link = $obj->{"1"}; unset($obj->{"1"});
+        $obj->stretch = $obj->{"2"}; unset($obj->{"2"});
+        return $obj;
     }
 }
 

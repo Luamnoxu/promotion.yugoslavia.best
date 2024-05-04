@@ -10,6 +10,9 @@
         body {
             font-family: "Arial", sans-serif;
             background-color: #f4f4f4;
+            background-image: url('/assets/ltg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
             color: #333;
             padding: 20px;
         }
@@ -44,10 +47,10 @@
     </style>
 </head>
 <body>
-    <img src="logo.png">
+    <img src="assets/logo.png">
     <form method="post" action="/upload.php" enctype="multipart/form-data">
         <div class="instructions">
-            <p>Please fill out the form to submit your advertisement. Ensure that your submission includes a default.[filetype]</p>
+            <p>Please fill out the form to submit your advertisement. Ensure that your submission is one image or includes a default.html</p>
             <p>Allowed filetypes:</p>
             <ul>
                 <?php foreach (fgetcsv(fopen(__DIR__.'/../src/allowed_mime.csv','r')) as $key => $value) {
@@ -56,7 +59,8 @@
             </ul>
         </div>
         <input type="text" name="ad_name" placeholder="Your Name" required><br>
-        <input type="text" name="ad_link" placeholder="Link to" required><br><br>
+        <input type="text" name="ad_link" placeholder="Link to" required><br>
+        <input type="checkbox" name="no_stretch" value="1"><span>Dont stretch the advertisement</span><br><br>
         <input type="file" name="ad_files[]" multiple required><br><br>
         <span>Upload One or more Files</span><br>
         <input type="submit" value="Upload File">

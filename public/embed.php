@@ -8,7 +8,6 @@ $embed = new Embed;
 // Scan and pick a random option
 $options = array_diff(scandir($embed->storageDir), array('..', '.', 'fallback'));
 $out = $embed->getEmbedContent($options[array_rand($options)]);
-
 // Set the appropriate Content-Type
 //header('Content-Type: ' . $out['mime']);
 
@@ -36,13 +35,16 @@ $baseImagePath = 'serveFile.php?file=';
                 position: relative;
             }
             img {
-                width: 100%; /* Make images fill the container */
-                height: auto; /* Maintain aspect ratio */
-                max-height: 200px; /* Restrict height to 200px */
+                <?php if($out['info']->stretch == 'stretch'){ ?>
+                width: 100%;
+                <?php }else{ echo "margin: auto;"; } ?>
+                height: auto;
+                max-height: 200px;
             }
         </style>
     </head>
     <body>
+        <a href="<?php echo $out['info']->link ?>" target="_blank">
         <?php
             if (str_starts_with($out['mime'], 'text')) {
                 $dom = new DOMDocument();
@@ -66,9 +68,10 @@ $baseImagePath = 'serveFile.php?file=';
                 echo $clean_html;
             } else {
                 // Handle binary data like images
-                echo '<img src="data:' . $out['mime'] . ';base64,' . base64_encode($out['contents']) . '" />';
+                echo '<div style="display: flex; align-items: center; justify-content: center;"><img src="data:' . $out['mime'] . ';base64,' . base64_encode($out['contents']) . '" /></div>';
             }
         ?>
+        </a>
         <div style="position: absolute; bottom: 0; right: 0; border: solid 1px black; background-color:white;z-index:999999;color:white;">
         <a href="https://promotion.yugoslavia.best" target="_blank">
             <span>Yugoslavia Promotions</span>
