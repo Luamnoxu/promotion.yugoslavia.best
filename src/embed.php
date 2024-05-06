@@ -67,10 +67,6 @@ final class Embed
         });
     }
 
-    private function getLink($target){
-        return file_get_contents($this->storageDir.$target.'/.info');
-    }
-
     private function fetchFileContent(string $target, string $filename): string
     {
         $filePath = $this->storageDir . $target . '/' . $filename;
@@ -83,7 +79,7 @@ final class Embed
         return MimeType::fromFile($filePath);
     }
 
-    private function getInfo($target){
+    public function getInfo($target){
         $info = file_get_contents($this->storageDir.$target.'/.info');
         $obj = (object)explode(PHP_EOL,$info);
         $obj->author = $obj->{"0"}; unset($obj->{"0"});

@@ -36,12 +36,13 @@ if (isset($_GET['yes']) && isset($_GET['itm'])) {
 
     $choice = (bool)$_GET['yes'];
     $itm = $_GET['itm'];
+    $author = $embed->getInfo($_GET['itm'])->author;
     $pending_dir = __DIR__ . '/../pending';
     if ($choice) {
         $storagePath = __DIR__ . "/../storage/" . $itm;
         if (file_exists($pending_dir . '/' . $itm)) {
             if (rename($pending_dir . '/' . $itm, $storagePath)) {
-                $log->info("Moved item from pending to storage: {$itm}");
+                $log->info("Moved Ad by {$author} from pending to storage ({$itm})");
             } else {
                 $log->error("Failed to move item from pending to storage: {$itm}");
             }

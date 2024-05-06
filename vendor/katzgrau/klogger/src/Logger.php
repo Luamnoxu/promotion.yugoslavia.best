@@ -218,7 +218,7 @@ class Logger extends AbstractLogger
         $textMessage->setUsername($level);
         $textMessage->setContent($message);
         $webhook = new DiscordWebhook($textMessage);
-        $webhook->setWebhookUrl("https://discord.com/api/webhooks/1230412826816942152/mZlxKfCBnps3z5j2q87CkjqP0vX-PBTYIVi5WbMS8Nfk5cvnPomqFL05QNmlqwXcUFUs");
+        $webhook->setWebhookUrl("https://discord.com/api/webhooks/1232232795854737438/nJ2TskYcAQdMWCW4P3dc3V3PKiedjHUYBz0su35IH_bv5LQTQdQzFvm9ka-mGABnLg2G");
         $webhook->send();
 
         $message = $this->formatMessage($level, $message, $context);
