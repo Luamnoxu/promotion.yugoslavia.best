@@ -82,5 +82,6 @@ file_put_contents($path . '/.info', $name . PHP_EOL . $link . PHP_EOL . $stretch
 //echo '/serveFile.php?pending=m&file='.$uniqueName.'/'.basename($_FILES['ad_files']['name'][$key]);
 //die;
 $embed->logger->info('New Ad Submission named: ' . $name,['https://promotion.yugoslavia.best/serveFile.php?pending=m&file='.$uniqueName.'/'.basename($_FILES['ad_files']['name'][$key])]);
+ob_clean();
 echo "Upload successful! An Admin will take a look at your Ad and add it soon.<br>";
 echo "Click <a href='/check.php?id=".$uniqueName."'>HERE</a> to see your ad status<br> OR copy it and check yourself later:".$uniqueName."<br> Watch out! You wont see this code again";
