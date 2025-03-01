@@ -3,7 +3,7 @@ require __DIR__ . '/../src/auth.php';
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__.'/../src/embed.php';
 
-$embed = new Embed;
+$embed = new Embed(true);
 $log = $embed->logger; // Assuming $embed->logger returns an instance of a PSR-3 compliant logger
 
 if (isset($_GET['yes']) && isset($_GET['itm'])) {

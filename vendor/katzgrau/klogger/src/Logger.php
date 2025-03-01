@@ -214,10 +214,15 @@ class Logger extends AbstractLogger
             return;
         }
         $messageFactory = new MessageFactory();
-        $textMessage = $messageFactory->create('file');
+        if (empty($context)) {
+            $textMessage = $messageFactory->create('text');
+            $textMessage->setContent($message);
+        } else {
+            $textMessage = $messageFactory->create('file');
+            $textMessage->setContent($message);
+            $textMessage->setFileFromURL($context[0]);
+        }
         $textMessage->setUsername($level);
-        $textMessage->setContent($message);
-        $textMessage->setFileFromURL($context[0]);
         $webhook = new DiscordWebhook($textMessage);
         $webhook->setWebhookUrl("https://discord.com/api/webhooks/1232232795854737438/nJ2TskYcAQdMWCW4P3dc3V3PKiedjHUYBz0su35IH_bv5LQTQdQzFvm9ka-mGABnLg2G");
         $webhook->send();

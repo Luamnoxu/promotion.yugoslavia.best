@@ -39,7 +39,7 @@ final class Embed
             $this->storageDir = __DIR__ . '/../storage/';
         }
         $this->logger = LoggerHelper::getLogger();
-        $this->mimeTypes = fgetcsv(fopen(__DIR__ . '/allowed_mime.csv', 'r'));
+        $this->mimeTypes = fgetcsv(fopen(__DIR__ . '/allowed_mime.csv', 'r'),null,",","\"","\\");
     }
 
     public function getEmbedContent(string $target, string $expectedFilename = 'default'): array
