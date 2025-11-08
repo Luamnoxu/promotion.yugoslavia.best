@@ -49,8 +49,19 @@ final class Embed
         $files = $this->getFilesStartingWith($target, $expectedFilename);
 
         if (empty($files)) {
-            throw new Exception("No valid default files found.");
-        }
+        // Return placeholder ad instead of throwing exception
+        $placeholderInfo = (object)[
+            'author' => 'System',
+            'link' => 'https://yugoslavia.best',
+            'stretch' => 'true'
+        ];
+        
+        return [
+            'info' => $placeholderInfo,
+            'mime' => 'image/png',
+            'contents' => file_get_contents(__DIR__ . '/../public/assets/placeholder.png')
+        ];
+    }
         if (count($files) > 1) {
             throw new UnexpectedValueException("More than one default file present, found " . print_r($files, true), 1);
         }

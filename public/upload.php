@@ -6,8 +6,8 @@ $embed = new Embed;
 
 use Bayfront\MimeTypes\MimeType;
 if (count($_POST) < 2 || empty($_FILES['ad_files'])) {
-    http_response_code(422);
-    return "You're missing something.";
+    //http_response_code(422);
+    echo "You're missing something.";
 }
 
 $name = preg_replace("/[^a-zA-Z0-9_\-]/", "", $_POST['ad_name']);  // Sanitize name
@@ -20,8 +20,8 @@ if(!isset($_POST['no_stretch'])){
 
 if (!preg_match('/^\w+$/', $name)) {
     $embed->logger->info($name . ' tried to do something silly');
-    http_response_code(422);
-    return "Invalid directory name.";
+    //http_response_code(422);
+    echo "Invalid directory name.";
 }
 
 $default_present = false;
@@ -54,14 +54,14 @@ $path = __DIR__ . '/../pending/' . $uniqueName;
 if (!is_dir($path) && !mkdir($path, 0777, true)) {
     $embed->logger->error($path . ' failed to create');
     http_response_code(500);
-    return "Failed to create directory.";
+    echo "Failed to create directory.";
 }
 
 foreach ($_FILES['ad_files']['tmp_name'] as $key => $tmp_name) {
     $error = $_FILES['ad_files']['error'][$key];
     if ($error !== UPLOAD_ERR_OK) {
-        http_response_code(422);
-        return "File upload error: " . $error;
+        //http_response_code(422);
+        echo "File upload error: " . $error;
     }
 
     $fileDestination = $path . '/' . basename($_FILES['ad_files']['name'][$key]);
@@ -69,13 +69,13 @@ foreach ($_FILES['ad_files']['tmp_name'] as $key => $tmp_name) {
 
     if (!in_array($fileMime, $embed->mimeTypes)) {
         $embed->logger->error($name . ' has forbidden MIME type ' . $fileMime);
-        http_response_code(422);
-        return "Forbidden MIME type detected.";
+        //http_response_code(422);
+        echo "Forbidden MIME type detected.";
     }
 
     if (!move_uploaded_file($tmp_name, $fileDestination)) {
-        http_response_code(500);
-        return "Failed to move uploaded file.";
+        //http_response_code(500);
+        echo "Failed to move uploaded file.";
     }
 }
 file_put_contents($path . '/.info', $name . PHP_EOL . $link . PHP_EOL . $stretch);
