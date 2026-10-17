@@ -4,10 +4,15 @@ require __DIR__ . '/../vendor/autoload.php';
 
 // serveFile.php
 if (isset($_GET['file'])) {
+    if (!preg_match('#^[a-f0-9]{64}/[a-zA-Z0-9._\-]+$#', $_GET['file'])) {
+        http_response_code(400);
+        echo 'Bad request.';
+        exit;
+    }
     if(isset($_GET['pending'])){
-        $filePath = '../pending/' . $_GET['file'];
+        $filePath = __DIR__ . '/../pending/' . $_GET['file'];
     }else{
-        $filePath = '../storage/' . $_GET['file'];
+        $filePath = __DIR__ . '/../storage/' . $_GET['file'];
     }
     
 

@@ -21,7 +21,8 @@ if(!isset($_POST['no_stretch'])){
 if (!preg_match('/^\w+$/', $name)) {
     $embed->logger->info($name . ' tried to do something silly');
     //http_response_code(422);
-    echo "Invalid directory name.";
+    echo "boy what are you doing";
+    exit;
 }
 
 $default_present = false;
@@ -34,7 +35,7 @@ foreach ($_FILES['ad_files']['name'] as $value) {
 
 if (!$default_present) {
     if (count($_FILES['ad_files']['name']) == 1) {
-        $mime = MimeType::fromFile($_FILES['ad_files']['name'][0]);
+        $mime = MimeType::fromFile($_FILES['ad_files']['tmp_name'][0]);
         if(str_starts_with($mime,'image/')){
             $_FILES['ad_files']['name'][0] = 'default.'.explode('image/',$mime)[1];
         }else{
@@ -65,12 +66,13 @@ foreach ($_FILES['ad_files']['tmp_name'] as $key => $tmp_name) {
     }
 
     $fileDestination = $path . '/' . basename($_FILES['ad_files']['name'][$key]);
-    $fileMime = MimeType::fromFile($_FILES['ad_files']['name'][$key]);
+    $fileMime = MimeType::fromFile($tmp_name);
 
     if (!in_array($fileMime, $embed->mimeTypes)) {
         $embed->logger->error($name . ' has forbidden MIME type ' . $fileMime);
-        //http_response_code(422);
+        http_response_code(422);
         echo "Forbidden MIME type detected.";
+        exit;
     }
 
     if (!move_uploaded_file($tmp_name, $fileDestination)) {

@@ -7,6 +7,7 @@ $embed = new Embed(true);
 $log = $embed->logger; // Assuming $embed->logger returns an instance of a PSR-3 compliant logger
 
 if (isset($_GET['yes']) && isset($_GET['itm'])) {
+    $_GET['itm'] = basename($_GET['itm']);
     function deleteDirectory($dirPath)
     {
         global $log; // Make $log available inside the function
@@ -35,7 +36,7 @@ if (isset($_GET['yes']) && isset($_GET['itm'])) {
     }
 
     $choice = (bool)$_GET['yes'];
-    $itm = $_GET['itm'];
+    $itm = basename($_GET['itm']);
     $author = $embed->getInfo($_GET['itm'])->author;
     $pending_dir = __DIR__ . '/../pending';
     if ($choice) {
